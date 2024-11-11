@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Showcase</title>
+    <style>
+        .recommendations-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+            justify-content: center;
+            padding: 20px;
+            background-color: #9c0808;
+            font-size: 38px;
+            font-family: 'Times New Roman', Times, serif;
+           
+        }
+        .card {
+            width: 100px;
+            background-color: rgb(129, 7, 7);
+            box-shadow: 0 4px 8px rgba(233, 223, 223, 0.2);
+            text-align: center;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 80px;
+            overflow: hidden;
+        }
+        .promo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background-color: #1c1c1c;
+            color: rgb(100, 97, 97);
+        }
+        .promo-section .header {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 500px;
+            font-size: 17px;
+            color: #bbbbbb;
+        }
+        .promo-section .header a {
+            text-decoration: none;
+            color: #bbbbbb;
+        }     
+        .promo-section .promo-title {
+            font-size: 32px;
+            color: #4eca3e;
+            margin: 20px 0;
+        }
+        .promo-section .offer {
+            font-size: 24px;
+            color: #ff9f1c;
+        }
+        .promo-section .rent-info {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .promo-section .more-details {
+            font-size: 18px;
+            color: #8f8f8f;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .promo-section .availability {
+            font-size: 14px;
+            color: #8f8f8f;
+            margin-top: 15px;
+        }
+    
+    </style>
+
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .movie-card {
+            width: 180px;
+            cursor: pointer;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            transition: transform 0.3s ease;
+        }
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 270px;
+            object-fit: cover;
+        }
+        .movie-info {
+            padding: 10px;
+        }
+        .description-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            border-radius: 10px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 5;
+        }
+        .titulo h1{
+            border-radius: 10%;
+        }
+    </style>
+</head>
+<body>
+    <div class="recommendations-container">
+        <h1>Pobreflix</h1>
+    
+    </div>
+    <div class="promo-section">
+        <div class="header">
+
+            <a href="#">Início</a>
+            <a href="https://www.looke.com.br/landingpage?gad_source=1&gclid=Cj0KCQiA88a5BhDPARIsAFj595jQt6bcpaGAp-0fiSJHQIfD_aBYZ0-_Giln3QnUsEvLwKGxiJRJKlAaApyREALw_wcB">Filmes</a>
+            <a href="https://www.netflix.com/br-en/browse/genre/83">Séries</a>
+            <a href="file:///C:/Users/SN00138407/Documents/GitHub/HTML-CSS/Exerc%C3%ACcio/trabalho%2025/poduz.html">localização de produção</a>
+            <a href="https://www.primevideo.com/offers/nonprimehomepage/ref=dvm_pds_cpb_br_hk_s_g_mkw_stKmfBcpk-dc_pcrid_713585723449?gclid=Cj0KCQiA88a5BhDPARIsAFj595hb9KxTBSsHVVYCozP7VIo9THRiVhPZlsLvUGxhM0OWC7_DKvS1I0YaAqX3EALw_wcB&mrntrk=slid__pgrid_86022912466_pgeo_9213199_x__adext__ptid_kwd-12623861">site para assistir</a>
+
+        </div>
+
+        <h1 class="promo-title">Os Fantasmas Ainda se Divertem<br>BEETLEJUICE + BEETLEJUICE</h1>
+        
+        <p class="offer">Oferta relâmpago</p>
+        
+        <p class="rent-info">Alugue com 40% Off por tempo limitado</p>
+        
+        <div class="more-details">
+            Mais detalhes
+        </div>
+
+        <div class="availability">
+            Disponível para alugar ou comprar
+        </div>
+
+<h1>Filmes Recomendações</h1>
+<div class="container" id="movieContainer">
+  
+</div>
+
+<div class="overlay" id="overlay" onclick="closeDescription()"></div>
+
+<div class="description-box" id="descriptionBox">
+    <h3 id="movieTitle">Movie Title</h3>
+    <iframe id="movieTrailer" width="100%" height="315" src="" frameborder="0" allowfullscreen></iframe>
+    <p id="movieDescription">Movie Description</p>
+</div>
+
+<script>
+    const movies = [
+        { 
+            title: "Spider-Man: across the spider-verse", 
+            trailer: "https://www.youtube.com/embed/tg52up16eq0", 
+            description: "Peter Parker goes on a new adventure across the Spider-Verse.",
+            image: "imagens/spider-man across the spider-verse.jpg"
+        },
+        { 
+            title: "My Hero Academia: You're Next", 
+            trailer: "https://www.youtube.com//embed/Oe05mebRJ6k", 
+            description: "Deku and friends face a powerful villain in this animated movie.",
+            image: "imagens/My Hero Academia.jpg"
+        },
+        { 
+            title: "Doctor Strange (Doutor Estranho)", 
+            trailer: "https://www.youtube.com//embed/oaLko5zhjgY", 
+            description: "Um brilhante neurocirurgião da cidade de Nova York, a vida de Strange muda depois que um acidente de carro fere suas mãos. Ele busca cura em Kamar-Taj, Nepal, onde estuda com o Ancião e aprende os caminhos da magia e realidades alternativas. ",
+            image: "imagens/(Doutor Estranho).jpeg"
+        
+        },
+        { 
+            title: "Coraline (Coraline e a Porta Secreta)", 
+            trailer: "https://www.youtube.com//embed/m9bOpeuvNwY", 
+            description: "Coraline e a Porta Secreta (2009) é um filme de animação stop-motion que conta a história de Caroline Jones, uma menina que descobre uma porta secreta em sua nova casa e tem acesso a uma versão alternativa de sua vida.  ",
+            image: "imagens/Coraline (Coraline e a Porta Secreta).jpg"
+        
+        },{ 
+            title: "Scream VI (Gritos 6)", 
+            trailer: "https://www.youtube.com//embed/h74AXqw4Opc", 
+            description: "Os sobreviventes do massacre de Woodsboro começam uma vida nova em Nova Iorque, mas os pesadelos do passado ressurgem quando Ghostface volta para os atormentar. Melissa Barrera, Courteney Cox e Jenna Ortega protagonizam esta sequela do filme “Gritos” de 2022.",
+            image: "imagens/Scream VI (Gritos 6).jpg"
+        
+        },{ 
+            title: "A Centopeia Humana", 
+            trailer: "https://www.youtube.com//embed/glfBurdSUS8", 
+            description: "Em A Centopéia Humana, dirigido e roteirizado por Tom Six, duas jovens americanas, Winter Williams (Lindsay) e Jenny (Ashlynn Yennie), que estão em viagem de carro pela Europa, encontram-se com o carro quebrado à noite numa floresta deserta da Alemanha. Elas andam pelo local em busca de ajuda quando encontram uma cidadezinha isolada. No dia seguinte, elas acordam trancafiadas num hospital abandonado junto com um homem japonês. Um homem alemão mais velho que se identifica como cirurgiã aposentado, o Dr. Heiter (Dieter Laser) que, durante a sua carreira, se especializou em separar gêmeos siameses. No entanto, seus três pacientes (pessoas sequestradas) não estão prestes a serem separados, mas sim unidos em uma operação assustadora. Ele pretende juntá-los num só corpo e realizar o antigo desejo doentio de criar uma centopéia humana.",
+            image: "imagens/centopeia humana.png"
+        
+        },{ 
+            title: "Spider-Man (Homem-Aranha)", 
+            trailer: "https://www.youtube.com//embed/t06RUxPbp_c", 
+            description: "Peter Parker (Tobey Maguire) é um jovem estudioso que vive com seus tios, Ben (Cliff Robertson) e May (Rosemary Harris), desde que seus pais faleceram. Inteligente e com um grande interesse pela ciência, Peter tem dificuldade em se relacionar com seus colegas, por ser tímido e por eles o considerarem um nerd. Até que, em uma demonstração científica, um acidente inesperado faz com que aranha modificada geneticamente pique Peter. A partir de então seu corpo é quimicamente alterado pela picada da aranha, fazendo com que Peter possa escalar paredes e tetos, emitir pelos punhos um fluido ultra-resistente semelhante à uma teia de aranha e passe a ter um 'sentido de aranha', que o avisa sempre que há perigo por perto, além de superforça e visão ampliada. Inicialmente Peter pensa em usar seus novos poderes para ganhar dinheiro, adotando o nome de Homem-Aranha e se apresentando em lutas de exibição. Porém, ao permitir que um ladrão fuja por não considerar sua função capturá-lo, o fugitivo acaba assassinando seu tio Ben. A partir de então, Peter decide não mais usar seus poderes para proveito próprio e sim para enfrentar o mal, tendo como seu primeiro grande desafio enfrentar o psicótico Duende Verde (Willem Dafoe), que na verdade é o empresário Norman Osborn após ter sido exposto à um gás experimental que lhe deu uma segunda personalidade e grande força física.",
+            image: "imagens/Spider-Man (Homem-Aranha).webp"
+        
+        },{ 
+            title: "Winnie the Pooh: Blood and Honey(ursinho pooh sangue e mel)", 
+            trailer: "https://www.youtube.com//embed/DPf-IVYivpc", 
+            description: "Em Ursinho Pooh: Sangue e Mel, uma macabra releitura de terror baseada na famosa história do Ursinho Pooh, Leitão (Chris Cordell) e Pooh (Craig David Dowsett) são abandonados por Christopher Robin (Nikolai Leon), que, já adulto, decide partir para a faculdade. Furiosos, famintos e magoados, os dois se tornam essencialmente selvagens, e não encontram outra escolha a não ser voltar às suas raízes animais. Perdendo totalmente a personalidade amigável e mansa, eles agora são como um urso e um porco altamente ferozes que querem encontrar presas e matar qualquer um que se atreva a entrar na Floresta dos Sonhos Azuis.",
+            image: "imagens/ursinho pooh sangue e mel.jpeg"
+        
+        },{ 
+            title: "The Woman King (A Mulher Rei)", 
+            trailer: "https://www.youtube.com//embed/IK1sEiHodZg", 
+            description: "A Mulher Rei acompanha Nanisca (Viola Davis) que foi uma comandante do exército do Reino de Daomé, um dos locais mais poderosos da África nos séculos XVII e XIX. Durante o período, o grupo militar era composto apenas por mulheres que, juntas, combateram os colonizadores franceses, tribos rivais e todos aqueles que tentaram escravizar seu povo e destruir suas terras. Conhecidas como Agojie, o grupo foi criado por conta de sua população masculina enfrentar altas baixas na violência e guerra cada vez mais frequentes com os estados vizinhos da África Ocidental, o que levou Dahomey a ser forçado a dar anualmente escravos do sexo masculino, particularmente ao Império Oyo, que usou isso para troca de mercadorias como parte do crescente fenômeno do comércio de escravos na África Ocidental durante a Era dos Descobrimentos, o que fez com que mulheres fossem alistadas para o combate.",
+            image: "imagens/mulher re.webp"
+        
+        },{ 
+            title: "terrifier", 
+            trailer: "https://www.youtube.com//embed/fN5j1MtGO2Q", 
+            description: "Enquanto cuida de duas crianças na noite de Halloween, uma babá encontra uma antiga fita VHS no saco de doces das crianças.",
+            image: "imagens/terrifier.jpg"
+        
+        },{ 
+            title: "Five Nights At Freddy’s - O Pesadelo Sem Fim", 
+            trailer: "https://www.youtube.com//embed/2lGsCja_wKA", 
+            description: "Você consegue sobreviver por cinco noites? O assustador fenômeno dos jogos de terror, ''Five Nights at Freddy’s' (FNAF), se torna um evento cinematográfico arrepiante, já que a Blumhouse -- produtora de M3GAN, O Telefone Preto e O Homem Invisível -- traz a adaptação Five Nights at Freddy’s - O Pesadelo sem Fim para as telas.",
+            image: "imagens/Five Nights At Freddy’s - O Pesadelo Sem Fim.webp"
+        
+        },{ 
+            title: "Shazam! Furia dos Deuses", 
+            trailer: "https://www.youtube.com//embed/Jl4DCMw6Frc", 
+            description: "O filme dá continuidade à história do adolescente Billy Batson que, ao falar a palavra mágica “SHAZAM!”, é transformado em seu alter ego de super-herói, Shazam.",
+            image: "imagens/Shazam! Furia dos Deuses.jpg"
+        
+        },{ 
+            title: "Venom", 
+            trailer: "https://www.youtube.com//embed/u9Mv98Gr5pY", 
+            description: "A história sobre a evolução do personagem mais enigmático, complexo e durão da Marvel - Venom! Eddie Brock (Tom Hardy) fica perturbado depois que ele perde tudo, incluindo seu trabalho e noiva. Quando ele se encontra no fundo do poço, ele se torna anfitrião de um simbionte alienígena que fornece-lhe extraordinários superpoderes - transformando-o em Venom. Será que esses poderes serão...",
+            image: "imagens/Venom.jpg"
+        
+        },{ 
+            title: "Sing 2", 
+            trailer: "https://www.youtube.com//embed/gR8fRXRf3Qg", 
+            description: "Todas suas estrelas cantoras e dançantes favoritas de Sing, da Illumination, voltam para o derradeiro evento feliz do ano. O sempre otimista coala, Buster Moon, e seu elenco de estrelas têm o grande sonho de criar seu espetáculo mais deslumbrante de sempre na capital mundial do entretenimento, a cidade de Redshore.",
+            image: "imagens/sing 2.webp"
+        
+        },{ 
+            title: "The Super Mario Bros. ", 
+            trailer: "https://www.youtube.com//embed/TnGl01FkMMo", 
+            description: "Enquanto trabalham no subsolo para consertar um cano principal de água, os encanadores do Brooklyn, Mario e o irmão Luigi são transportados por um cano misterioso e vagam por um novo mundo mágico. Mas quando os irmãos se separam, Mario embarca em uma jornada épica para encontrar Luigi.",
+            image: "imagens/The Super Mario Bros..jpeg"
+        
+        },{ 
+            title: "Sonic 2: O Filme", 
+            trailer: "https://www.youtube.com//embed/G5kzUpWAusI", 
+            description: "O ouriço azul favorito do mundo está de volta para provar que tem o que é preciso para ser um verdadeiro herói. Seu teste acontece quando o Dr. Robotnik retorna, desta vez com um novo parceiro, Knuckles, em busca de uma esmeralda que tem o poder de destruir civilizações.",
+            image: "imagens/sonic 2.jpeg"
+        
+        },{ 
+            title: "Godzilla Evolui", 
+            trailer: "https://www.youtube.com//embed/CnZOg_P2DyI", 
+            description: "Para enfrentar um antigo inimigo inesperado, Godzilla passa por uma evolução, transformando-se com uma pele dura como diamante, barbatanas translúcidas e pontas nos cotovelos e na cauda. Descubra como este Titã atemporal ainda pode nos surpreender com sua evolução contínua.",
+            image: "imagens/Godzilla Evolui.jpg"
+        
+        },{ 
+            title: "apocalipse Z- o principio do fim", 
+            trailer: "https://www.youtube.com//embed/vtB9zML-fbE", 
+            description: "Uma doença semelhante à raiva começa a se espalhar pelo planeta, transformando as pessoas em criaturas agressivas. Manel vive isolado com seu gato, usando sua inteligência pra sobreviver, mas logo precisam partir em busca de comida. Apocalipse Z - O Princípio do Fim é uma história de sobrevivência, física e emocional. É repleta de ação e tensão, com uma epidemia contagiosa... e um gato rabugento",
+            image: "imagens/apocalipse Zo principio do fim.webp"
+        
+        },{ 
+            title: "NARUTO SHIPPUDEN O FILME: LAÇOS", 
+            trailer: "https://www.youtube.com//embed/OkI3ZCEbx_E", 
+            description: "Misteriosos ninjas voadores lançaram um ataque contra a Folha, deixando para trás um rastro de destruição. Para salvar a sua Aldeia, Naruto e seus amigos partem para impedir essa ameaça.",
+            image: "imagens/NARUTO SHIPPUDEN.webp"
+        
+        },{ 
+            title: "One Piece: 3D2Y", 
+            trailer: "https://www.youtube.com//embed/ylh4so3tg5g", 
+            description: "Ocorrendo dois anos antes dos Chapéus de Palha se reunirem em Sabody, durante o treinamento das irmãs de Hancock, Marigold e Sandersonia são sequestradas por Byrnndi World, um interno de nível 6 de Impel Down.",
+            image: "imagens/One Piece.webp"
+        
+        },{ 
+            title: "Dragon Ball Z: Uma Nova Fusão", 
+            trailer: "https://www.youtube.com//embed/rE95a4iC1dk", 
+            description: "O universo é lançado no caos dimensional enquanto os mortos voltam à vida. Agora Goku e Vegeta devem rastrear a causa desse alvoroço.",
+            image: "imagens/Dragon Ball Z.webp"
+        
+        },{ 
+            title: "LUPIN III vs. CAT’S EYE", 
+            trailer: "https://www.youtube.com//embed/kIqZBlVAXfA", 
+            description: "Hitomi, Rui e Ai são irmãs e ladras. Elas roubam um quadro de um museu ao mesmo tempo em que Lupin III aparece para roubar outro quadro. Os dois quadros fazem parte da série de Michael Heinz chamada “A Garota e as Flores”. Para as irmãs, os quadros são pistas para o paradeiro do pai desaparecido. Quando elas descobrem que o ladrão lendário está atrás do mesmo alvo, um fogo se acende dentro delas",
+            image: "imagens/LUPIN III vs. CAT’S EYE.webp"
+        
+        },{ 
+            title: "Re:ZERO:Laços Congelados", 
+            trailer: "https://www.youtube.com//embed/W_0qwC7P4s0", 
+            description: "As esculturas de gelo trouxeram à Emilia lembranças de seu passado, quando ainda vivia nas montanhas.",
+            image: "imagens/Laços Congelados.jpg"
+        
+        },{ 
+            title: "EVANGELION:3.0+1.01 A ESPERANÇA", 
+            trailer: "https://www.youtube.com//embed/GZfuWMDEJpw", 
+            description: "Quarto e último longa da Rebuild of Evangelion. Misato e o grupo anti-NERV, Wille, chegam a Paris, uma cidade vermelha em função dos núcleos. A tripulação da nave Wunder pousa em uma torre de contenção. Eles têm 720 segundos para restaurar a cidade. Quando EVAs da NERV aparecem, Mari deve interceptá-los com sua nova unidade 8. Enquanto isso, Shinji, Asuka e Rei (provisório) perambulam pelo Japão.",
+            image: "imagens/EVANGELION.jpg"
+        
+        },{ 
+            title: "JUJUTSU KAISEN ZERO", 
+            trailer: "https://www.youtube.com//embed/901o9QSXqAA", 
+            description: "''Eu prometo. Quando formos grandes, nós vamos nos casar!'' Quando Yuta Okkotsu era pequeno, sua amiga Rika Orimoto morreu num acidente de trânsito, bem na sua frente. Ela se tornou uma aparição, assombrando o jovem e atormentando a sua vida, até o dia em que Satoru Gojo, um feiticeiro Jujutsu, o convida para se matricular no Colégio Jujutsu. Junto com seus novos colegas de sala - Maki Zen'in, ...",
+            image: "imagens/JUJUTSU KAISEN ZERO.jpg"
+        
+        },{ 
+            title: "Viagem Para Agartha", 
+            trailer: "https://www.youtube.com//embed/EZJ-oDKFQrQ", 
+            description: "Uma história envolvendo amor jovem e música misteriosa, vinda de um rádio de cristal deixado como lembrança por um pai ausente, que leva uma jovem heroína ao fundo de um mundo escondido.",
+            image: "imagens/Viagem Para Agartha.webp"
+        
+        },{ 
+            title: "Your Name", 
+            trailer: "https://www.youtube.com//embed/xU47nhruN-Q", 
+            description: "Mitsuha Miyamizu é uma jovem que mora no interior do Japão e que deseja deixar sua pequena cidade para trás para tentar a sorte em Tóquio. Enquanto isso, Taki Tachibana, um jovem que trabalha em um restaurante italiano em Tóquio, deseja largar o seu emprego para tentar se tornar um arquiteto. Os dois não se conhecem, mas estão direta e misteriosamente conectados pelas imagens de seus sonhos.",
+            image: "imagens/Your Name.jpg"
+        
+        }
+        
+
+    ];
+
+    // Função para renderizar os cartões dos filmes
+    function renderMovies() {
+        const container = document.getElementById('movieContainer');
+        movies.forEach((movie) => {
+            const movieCard = document.createElement('div');
+            movieCard.classList.add('movie-card');
+            movieCard.innerHTML = `
+                <img src="${movie.image}" class="movie-poster" alt="${movie.title}">
+                <div class="movie-info">
+                    <h3>${movie.title}</h3>
+                </div>
+            `;
+            movieCard.onclick = () => showDescription(movie);
+            container.appendChild(movieCard);
+        });
+    }
+
+    // Função para exibir o trailer e descrição do filme
+    function showDescription(movie) {
+        document.getElementById('movieTitle').innerText = movie.title;
+        document.getElementById('movieTrailer').src = movie.trailer;
+        document.getElementById('movieDescription').innerText = movie.description;
+        document.getElementById('descriptionBox').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+
+    // Função para fechar a caixa de descrição
+    function closeDescription() {
+        document.getElementById('descriptionBox').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('movieTrailer').src = "";
+    }
+
+    // Renderiza os filmes na página
+    renderMovies();
+</script>
+
+</body>
+</html>
